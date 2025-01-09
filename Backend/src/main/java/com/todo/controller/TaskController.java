@@ -2,6 +2,7 @@ package com.todo.controller;
 
 import com.todo.model.Task;
 import com.todo.service.TaskService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,11 +18,13 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+    @Operation(summary = "Get all tasks", description = "Return a list of all tasks")
     @GetMapping
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();
     }
 
+    @Operation(summary = "Get task by id", description = "Get details by task ID")
     @GetMapping("/{id}")
     public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
         return taskService.getTaskById(id)
@@ -29,11 +32,13 @@ public class TaskController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Create task", description = "Create new task based on the request body")
     @PostMapping
     public Task createTask(@RequestBody Task task) {
         return taskService.createTask(task);
     }
 
+    @Operation(summary = "Update task", description = "Update the task by task ID")
     @PutMapping("/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task) {
 //        return taskService.updateTask(id, updateTask);
@@ -44,6 +49,7 @@ public class TaskController {
         return ResponseEntity.notFound().build();
     }
 
+    @Operation(summary = "Delete task", description = "Delete the task by task ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
