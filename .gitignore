@@ -1,0 +1,22 @@
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+
+# Ignore build output directories for both frontend and backend
+out/
+target/
+build/
+
+# Ignore library dependencies, assuming they are managed by a tool like Maven or Gradle
+/lib/
+
+# Ignore OS and editor-generated files
+.DS_Store
+Thumbs.db
+*.swp
+*.lock
